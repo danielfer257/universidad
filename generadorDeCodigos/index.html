@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<title>Gestion de Codigos</title>
+</head>
+<body>
+	<div class="col-lg-12"><img src="encabezado.png" class="img-fluid" alt="Responsive image"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<h1 style="text-align:center;" >Generador de codigos</h1>
+				<h5 >La presente aplicacion web, permite controlar la asignacion de codigos consecutivos de los documentos emitidos por las dependencias de la FIET</h5><br>
+				<h3>FUNCIONAMIENTO</h3>
+				<ul>
+					<li>Al seleccionar una dependencia o una subdependecia, ira mostrando y armando el codigo consecutivo actual</li>
+					<li>Para poder tomar un codigo es necesario seleccionar una subdependecia</li>
+					<li>Para poder tomar un codigo es necesario seleccionar una subdependecia</li>
+					<li>Al presionar la opcion de "Tomar", se asignara el siguiente consecutivo, entonces se actualizara y mostrara en pantalla el codigo consecutivo actual</li>
+				</ul>
+				<h3>Integrantes</h3>
+				<ul>
+					<li>Edinson Hidalgo</li>
+					<li>Daniel Gomez Ortiz</li>
+					<li>Sandra Lorena Pisamina</li>
+				</ul>	
+			</div>
+			<div class="col-lg-6">
+				<div class="jumbotron">
+					<div class="display-4">
+						<h1 style="text-align:center;">Codigo actual</h1>
+						<div style="font-size: 100px;font-weight: bold;align-items: center;"  class="codigoAct"></div>
+					</div>
+					<hr class="my-4"> 
+					<h4>Dependencia:</h4><select class="dependencias"></select><br>
+					<h4>Sub-Dependencia:</h4><select class="subDependencias"></select>
+
+					<h2><br>Tomar codigo siguiente</h2>
+					<div class="tomar">
+						<button type="button" class="btn btn-lg btn-primary">Tomar</button>
+					</div>
+				</div>
+			</div>	
+		</div>
+	</div>
+
+	<script src="script.js"></script>
+</body>
+</html>
