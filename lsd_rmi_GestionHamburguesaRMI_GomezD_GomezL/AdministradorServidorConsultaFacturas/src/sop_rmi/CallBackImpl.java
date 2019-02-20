@@ -14,9 +14,8 @@ public class CallBackImpl extends UnicastRemoteObject implements CallBackInt
 		this.GUI=GUI;
 	}
 	@Override
-    public void notificarCompra(ArrayList<ClsHamburguesaDTO> hamburguesas) throws RemoteException {
-    	
-    		this.GUI.mostrarCompra(hamburguesas);
-    	
+    public void notificarCompra(ArrayList<ClsHamburguesaDTO> hamburguesas) throws RemoteException {  	
+
+        GUI.mostrarCompra(hamburguesas);
     }
 }

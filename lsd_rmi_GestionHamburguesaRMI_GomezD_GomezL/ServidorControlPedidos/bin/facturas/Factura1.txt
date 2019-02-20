@@ -1,8 +1,0 @@
-Cantidad de hamburguesas compradas:2
-Cantidad de hamburguesas pequenas:2
-Cantidad de hamburguesas medianas:0
-Cantidad de hamburguesas grandes:0
-Medio de pago:Pago en línea
-Costo sin iva:10000.0
-Costo del iva:500.0
-Costo total:10500.0

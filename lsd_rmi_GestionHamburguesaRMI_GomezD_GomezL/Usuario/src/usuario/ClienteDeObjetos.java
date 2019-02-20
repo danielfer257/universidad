@@ -15,11 +15,12 @@ public class ClienteDeObjetos extends javax.swing.JFrame {
     private static int idUsuario;
     private String idHamburguesa;
         
-    public ClienteDeObjetos(ClsGestorHamburguesasInt objRemoto) throws RemoteException {    
-       this.objRemoto =objRemoto; 
+    public ClienteDeObjetos() throws RemoteException {    
+       this.objRemoto = (ClsGestorHamburguesasInt)UtilidadesRegistroC.obtenerObjRemoto(1010,"localhost","ObjetoRemotoUsuarios");
        idUsuario=objRemoto.registrarUsuario();
        initComponents();  
        this.setVisible(true);
+       
     }
     
     public void comprarHamburguesa(String idHamburguesa,String tipo,String cantIngredientes) throws RemoteException
@@ -252,6 +253,11 @@ public class ClienteDeObjetos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+     public static void main(String args[]) throws RemoteException {
+        new ClienteDeObjetos();
+    }
+    
+    
     private void jbMostrarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbMostrarDatosActionPerformed
         try {
             ClsEmpresaDTO datosEmpresa=objRemoto.mostrarDatosEmpresa();

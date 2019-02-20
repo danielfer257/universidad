@@ -17,8 +17,8 @@ public class ServidorDeObjetos
     {
                  
         
-        String direccionIpRMIRegistry =  args[0]; 
-		int numPuertoRMIRegistry = Integer.parseInt(args[1]);		
+      	String direccionIpRMIRegistry =  args[0]; 
+        int numPuertoRMIRegistry = Integer.parseInt(args[1]); 
      
         ClsGestorHamburguesasImpl objRemoto = new ClsGestorHamburguesasImpl();        
         
@@ -26,7 +26,7 @@ public class ServidorDeObjetos
         {
                     
            UtilidadesRegistroS.arrancarNS(numPuertoRMIRegistry);
-           UtilidadesRegistroS.RegistrarObjetoRemoto(objRemoto, direccionIpRMIRegistry, numPuertoRMIRegistry, "ObjetoRemotoUsuarios");           
+           UtilidadesRegistroS.RegistrarObjetoRemoto(objRemoto,direccionIpRMIRegistry, numPuertoRMIRegistry, "ObjetoRemotoUsuarios");           
       
 	    } catch (Exception e)
         {

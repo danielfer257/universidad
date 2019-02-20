@@ -17,15 +17,18 @@ public class ServidorDeObjetos
     {
                  
         
+        
+             
         String direccionIpRMIRegistry =  args[0]; 
-		int numPuertoRMIRegistry = Integer.parseInt(args[1]);		   
-        ClsGestorFacturasImpl objRemoto = new ClsGestorFacturasImpl();              
+        int numPuertoRMIRegistry = Integer.parseInt(args[1]); 
+     
+        ClsGestorFacturasImpl objRemoto = new ClsGestorFacturasImpl();            
+        
         try
         {
                     
            UtilidadesRegistroS.arrancarNS(numPuertoRMIRegistry);
-           UtilidadesRegistroS.RegistrarObjetoRemoto(objRemoto, direccionIpRMIRegistry, numPuertoRMIRegistry, "objRemotoFacturas");           
-		  
+           UtilidadesRegistroS.RegistrarObjetoRemoto(objRemoto,direccionIpRMIRegistry, numPuertoRMIRegistry, "objRemotoFacturas");           
       
 	    } catch (Exception e)
         {

@@ -10,23 +10,23 @@ import sop_rmi.DTO.ClsHamburguesaDTO;
 public class ClienteDeObjetosGUI extends javax.swing.JFrame {
 
     private static ClsGestorFacturasInt objRemotoFacturas;
+    private  ClsGestorHamburguesasInt objRemotoUsuario;
     private static int idUsuario;
     
-    public ClienteDeObjetosGUI(ClsGestorFacturasInt objRemoto) throws RemoteException {  
-        this.objRemotoFacturas = objRemoto;
+    public ClienteDeObjetosGUI() throws RemoteException { 
+         initComponents();
+        objRemotoFacturas = (ClsGestorFacturasInt)UtilidadesRegistroC.obtenerObjRemoto(2020,"localhost","objRemotoFacturas"); 
         CallBackImpl objRemotoCallBack= new CallBackImpl(this);
-        UtilidadesRegistroS.arrancarNS(2020);
-        UtilidadesRegistroS.RegistrarObjetoRemoto(objRemotoCallBack,"localhost",2020,"objRemotoCallBack");
-       
-       
-        initComponents();
+        UtilidadesRegistroS.arrancarNS(3030);
+        UtilidadesRegistroS.RegistrarObjetoRemoto(objRemotoCallBack,"localhost",3030,"objRemotoCallBack");
+        this.admiUp();
         this.setVisible(true);
          
     }
-
-
-    public void mostrarCompra(ArrayList<ClsHamburguesaDTO> hamburguesas)
+  
+    public void mostrarCompra(ArrayList<ClsHamburguesaDTO> hamburguesas)throws RemoteException
     {
+   
         this.jTextArea1.setText("SE HA NOTIFICADO UNA NUEVA COMPRA DE HAMBURGUESAS\n");
         for(ClsHamburguesaDTO hamburguesa:hamburguesas)
         {
@@ -35,12 +35,16 @@ public class ClienteDeObjetosGUI extends javax.swing.JFrame {
     }
     public void admiUp() throws RemoteException
     {
-         ClsGestorHamburguesasInt objRemotoUsuario = (ClsGestorHamburguesasInt)UtilidadesRegistroC.obtenerObjRemoto(1313,"localhost","ObjetoRemotoUsuarios");
-         if(objRemotoUsuario!=null){ objRemotoUsuario.notificarAdminUp();}
+        
+        objRemotoUsuario= (ClsGestorHamburguesasInt)UtilidadesRegistroC.obtenerObjRemoto(1010,"localhost","ObjetoRemotoUsuarios");
+         if(objRemotoUsuario!=null){objRemotoUsuario.notificarAdminUp();}
     } 
            
     
            
+    
+    
+    
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -52,6 +56,11 @@ public class ClienteDeObjetosGUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jbFacturasRegistradas.setText("Facturas Registradas");
         jbFacturasRegistradas.addActionListener(new java.awt.event.ActionListener() {
@@ -109,6 +118,9 @@ public class ClienteDeObjetosGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+     public static void main(String args[]) throws RemoteException {
+        new ClienteDeObjetosGUI();
+    }
     private void jbFacturasRegistradasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbFacturasRegistradasActionPerformed
         try {
             int cantFacturas=objRemotoFacturas.facturasRegistradas();
@@ -134,6 +146,14 @@ public class ClienteDeObjetosGUI extends javax.swing.JFrame {
             Logger.getLogger(ClienteDeObjetosGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jbCostoComprasActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        try {
+            objRemotoUsuario.notificarAdminDown();
+        } catch (RemoteException ex) {
+            Logger.getLogger(ClienteDeObjetosGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments

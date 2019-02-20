@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package sop_rmi;
 
 import sop_rmi.DTO.*;
@@ -21,12 +17,12 @@ public class ClsGestorHamburguesasImpl extends UnicastRemoteObject implements Cl
 	private empresaDAO datosEmpresa;
 	private facturaDAO datosFactura;
 	private CallBackInt objRemotoCallBack;
-	private ArrayListt<ClsHamburguesaDTO> ultimaCompra;
+	private ArrayList<ClsHamburguesaDTO> ultimaCompra;
 	
 	public ClsGestorHamburguesasImpl() throws RemoteException
 	{
 		super();
-		objRemotoCallBack = (CallBackInt)UtilidadesRegistroC.obtenerObjRemoto(2020,"localhost","objRemotoCallBack");
+		objRemotoCallBack = (CallBackInt)UtilidadesRegistroC.obtenerObjRemoto(3030,"localhost","objRemotoCallBack");
 		colUsuarios=new ArrayList<ClsUsuario>();
 		datosEmpresa=new empresaDAO();
 		datosFactura=new facturaDAO();
@@ -131,7 +127,7 @@ public class ClsGestorHamburguesasImpl extends UnicastRemoteObject implements Cl
 			ClsUsuario usuarioActual=colUsuarios.get(idUsuario-1);
 			
 			if(this.objRemotoCallBack!=null){
-				this.objRemotoCallBack.notificarCompra(usuarioActual.listarHamburguesas(););
+				this.objRemotoCallBack.notificarCompra(usuarioActual.listarHamburguesas());
 			}
 			else{ultimaCompra=usuarioActual.listarHamburguesas();}
 			System.out.println("Se genero la factura exitosamente");
@@ -139,13 +135,22 @@ public class ClsGestorHamburguesasImpl extends UnicastRemoteObject implements Cl
 		else {System.out.println("ERROR,No se pudo generar la factura");}
 		return varResultado;
 	}
+
 	@Override
-	public void notificarAdmiUp()throws RemoteException
+	public void notificarAdminUp()throws RemoteException
 	{
-		objRemotoCallBack = (CallBackInt)UtilidadesRegistroC.obtenerObjRemoto(2020,"localhost","objRemotoCallBack");
+		System.out.println("NOTIFICACION!! EL ADMINISTRADOR DE FACTURAS HA INICIADO");
+		objRemotoCallBack = (CallBackInt)UtilidadesRegistroC.obtenerObjRemoto(3030,"localhost","objRemotoCallBack");
 		if(this.objRemotoCallBack!=null&&this.ultimaCompra!=null){
 				this.objRemotoCallBack.notificarCompra(this.ultimaCompra);
+				this.ultimaCompra=null;
 			}
+	}
+	@Override
+	public void notificarAdminDown()throws RemoteException
+	{
+		System.out.println("NOTIFICACION!! EL ADMINISTRADOR DE FACTURAS HA CERRADO");
+		objRemotoCallBack = null;
 	}
    
     

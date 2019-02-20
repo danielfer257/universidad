@@ -1,6 +1,7 @@
 package usuario;
 
 import java.rmi.RemoteException;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -17,6 +18,7 @@ import java.util.logging.Logger;
 public class jfDatosHamburguesa extends javax.swing.JFrame {
 ClienteDeObjetos principal;
 String varId;
+ClsValidaciones validaciones;
     /**
      * Creates new form NewJFrame
      */
@@ -25,6 +27,7 @@ String varId;
         this.principal=principal;
         this.setTitle("Comprando hamburguesa");
         this.setLocationRelativeTo(principal);
+        
     }
      public jfDatosHamburguesa(ClienteDeObjetos principal,String id,String tipo,int cantIngredientes) {
         initComponents();
@@ -38,6 +41,7 @@ String varId;
         this.setTitle("Modificando hamburguesa");
         this.jbAceptar.setText("Modificar");
         this.setLocationRelativeTo(principal);
+       
     }
 
     /**
@@ -49,6 +53,8 @@ String varId;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDialogValidaciones = new javax.swing.JDialog();
+        jlValidacion = new javax.swing.JLabel();
         jbAceptar = new javax.swing.JButton();
         jlTipo = new javax.swing.JLabel();
         jlID = new javax.swing.JLabel();
@@ -58,6 +64,31 @@ String varId;
         jTfCantIngredientes = new javax.swing.JTextField();
         jbCancelar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+
+        jDialogValidaciones.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        jDialogValidaciones.setTitle("Error validaciones");
+        jDialogValidaciones.setLocation(new java.awt.Point(300, 450));
+        jDialogValidaciones.setSize(new java.awt.Dimension(320, 75));
+
+        jlValidacion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlValidacion.setText("*********************************");
+
+        javax.swing.GroupLayout jDialogValidacionesLayout = new javax.swing.GroupLayout(jDialogValidaciones.getContentPane());
+        jDialogValidaciones.getContentPane().setLayout(jDialogValidacionesLayout);
+        jDialogValidacionesLayout.setHorizontalGroup(
+            jDialogValidacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialogValidacionesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlValidacion)
+                .addContainerGap(62, Short.MAX_VALUE))
+        );
+        jDialogValidacionesLayout.setVerticalGroup(
+            jDialogValidacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialogValidacionesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlValidacion)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -77,7 +108,7 @@ String varId;
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Cantidad de Ingredientes:");
 
-        jCbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pequena", "Mediana", "Grande", "" }));
+        jCbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pequena", "Mediana", "Grande" }));
 
         jbCancelar.setText("Cancelar");
         jbCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -150,18 +181,37 @@ String varId;
     private void jbAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAceptarActionPerformed
        
     try {
-        if(this.jbAceptar.getText().equals("Aceptar")){
-        principal.comprarHamburguesa(jTfId.getText(),jCbTipo.getItemAt(jCbTipo.getSelectedIndex()),jTfCantIngredientes.getText());
+        validaciones=new ClsValidaciones();
+        if(validaciones.validarCampos(jTfId.getText(), jTfCantIngredientes.getText()))
+         {
+            if(validaciones.validarRango(jTfCantIngredientes.getText())){
+               if(this.jbAceptar.getText().equals("Aceptar")){
+                    principal.comprarHamburguesa(jTfId.getText(),jCbTipo.getItemAt(jCbTipo.getSelectedIndex()),jTfCantIngredientes.getText());     
+                }
+                else
+                {           
+                    principal.modificarHamburguesa(varId,jTfId.getText(),jCbTipo.getItemAt(jCbTipo.getSelectedIndex()),jTfCantIngredientes.getText());   
+                }
+                this.dispose();
+            }
+            else{
+              
+                   // jlValidacion.setLocation(500,500);
+                this.jlValidacion.setText("La cantidad de ingredientes no puede ser negativo");this.jDialogValidaciones.setVisible(true);
+                 this.jDialogValidaciones.setAlwaysOnTop(true); 
+            }
+         }
+         else{ 
+             //jlValidacion.setLocation(100,100);
+            this.jlValidacion.setText("              No puede haber campos vacios");this.jDialogValidaciones.setVisible(true);     
+            this.jDialogValidaciones.setAlwaysOnTop(true); 
         }
-        else
-        {           
-            principal.modificarHamburguesa(varId,jTfId.getText(),jCbTipo.getItemAt(jCbTipo.getSelectedIndex()),jTfCantIngredientes.getText());
-        }
+        
     } catch (RemoteException ex) {
         Logger.getLogger(jfDatosHamburguesa.class.getName()).log(Level.SEVERE, null, ex);
     }
   
-       this.dispose();      
+       
     }//GEN-LAST:event_jbAceptarActionPerformed
 
     private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
@@ -170,6 +220,7 @@ String varId;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> jCbTipo;
+    private javax.swing.JDialog jDialogValidaciones;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField jTfCantIngredientes;
@@ -178,5 +229,6 @@ String varId;
     private javax.swing.JButton jbCancelar;
     private javax.swing.JLabel jlID;
     private javax.swing.JLabel jlTipo;
+    private javax.swing.JLabel jlValidacion;
     // End of variables declaration//GEN-END:variables
 }

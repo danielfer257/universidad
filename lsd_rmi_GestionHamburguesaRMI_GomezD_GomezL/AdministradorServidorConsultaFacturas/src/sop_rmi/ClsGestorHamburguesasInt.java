@@ -18,4 +18,5 @@ public interface ClsGestorHamburguesasInt extends Remote
     public ClsFacturaDTO datosFactura(int idUsuario) throws RemoteException; 
     public boolean generarFactura(int idUsuario,ClsFacturaDTO factura) throws RemoteException;
     public void notificarAdminUp()throws RemoteException;
+    public void notificarAdminDown() throws RemoteException;
 }

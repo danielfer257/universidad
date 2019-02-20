@@ -1,4 +1,3 @@
-
 package sop_rmi;
 
 import sop_rmi.DTO.*;
@@ -17,5 +16,6 @@ public interface ClsGestorHamburguesasInt extends Remote
     public boolean EliminarHamburguesa(int idUsuario,String idHamburguesa) throws RemoteException;
     public ArrayList<ClsHamburguesaDTO> listarHamburguesas(int idUsuario) throws RemoteException; 
     public ClsFacturaDTO datosFactura(int idUsuario) throws RemoteException; 
-	public boolean generarFactura(int idUsuario,ClsFacturaDTO factura) throws RemoteException;
+    public boolean generarFactura(int idUsuario,ClsFacturaDTO factura) throws RemoteException;
+	public void notificarAdminUp()throws RemoteException;
 }
