@@ -16,10 +16,11 @@ public class ClienteDeObjetos extends javax.swing.JFrame {
     private String idHamburguesa;
         
     public ClienteDeObjetos() throws RemoteException {    
+    	initComponents();  
+       this.setVisible(true);
        this.objRemoto = (ClsGestorHamburguesasInt)UtilidadesRegistroC.obtenerObjRemoto(1010,"localhost","ObjetoRemotoUsuarios");
        idUsuario=objRemoto.registrarUsuario();
-       initComponents();  
-       this.setVisible(true);
+       
        
     }
     

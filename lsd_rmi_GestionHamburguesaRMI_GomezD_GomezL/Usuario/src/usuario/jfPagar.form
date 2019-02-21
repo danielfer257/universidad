@@ -75,7 +75,7 @@
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="default"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Tarjeta de cr&#xe9;dito"/>
+        <Property name="text" type="java.lang.String" value="Tarjeta de credito"/>
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jRbTarjetaCreditoMouseClicked"/>
@@ -86,7 +86,7 @@
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="default"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Pago en l&#xed;nea"/>
+        <Property name="text" type="java.lang.String" value="Pago en linea"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRbPagoLineaActionPerformed"/>
@@ -97,7 +97,7 @@
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="default"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Retornar al men&#xfa; principal"/>
+        <Property name="text" type="java.lang.String" value="Retornar al menu; principal"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRbRetornarActionPerformed"/>

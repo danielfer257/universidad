@@ -14,13 +14,14 @@ public class ClienteDeObjetosGUI extends javax.swing.JFrame {
     private static int idUsuario;
     
     public ClienteDeObjetosGUI() throws RemoteException { 
-         initComponents();
+        initComponents();
+		this.setVisible(true);
         objRemotoFacturas = (ClsGestorFacturasInt)UtilidadesRegistroC.obtenerObjRemoto(2020,"localhost","objRemotoFacturas"); 
         CallBackImpl objRemotoCallBack= new CallBackImpl(this);
         UtilidadesRegistroS.arrancarNS(3030);
         UtilidadesRegistroS.RegistrarObjetoRemoto(objRemotoCallBack,"localhost",3030,"objRemotoCallBack");
         this.admiUp();
-        this.setVisible(true);
+        
          
     }
   
