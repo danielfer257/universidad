@@ -1,5 +1,5 @@
-cd ServidorControlPedidos\bin
-java servidor.ServidorDeObjetos localhost 1010
+cd Usuario\bin
+java usuario.ClienteDeObjetos localhost 1010
 
 
 

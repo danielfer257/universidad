@@ -28,10 +28,10 @@ public class ClienteDeObjetosGUI extends javax.swing.JFrame {
     public void mostrarCompra(ArrayList<ClsHamburguesaDTO> hamburguesas)throws RemoteException
     {
    
-        this.jTextArea1.setText("SE HA NOTIFICADO UNA NUEVA COMPRA DE HAMBURGUESAS\n");
+        this.jTextArea1.setText("SE HA NOTIFICADO UNA NUEVA\n COMPRA DE HAMBURGUESAS\n");
         for(ClsHamburguesaDTO hamburguesa:hamburguesas)
         {
-            this.jTextArea1.append(hamburguesa.getId()+"\n"); 
+            this.jTextArea1.append("Id hamburguesa:"+hamburguesa.getId()+"\n"); 
         }
     }
     public void admiUp() throws RemoteException

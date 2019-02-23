@@ -1,5 +1,5 @@
-cd ServidorControlConsultaFacturas\bin
-java servidor.ServidorDeObjetos localhost 2020
+cd AdministradorServidorConsultaFacturas\bin
+java cliente.ClienteDeObjetosGUI localhost 2020
 
 
 
